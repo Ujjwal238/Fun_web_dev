@@ -8,18 +8,18 @@ const weeklyScores = [
         shiven: 0
     },
     // Week 2
-    {
-        ujjwal: 1,
-        rudresh: 0,
-        deepu: 99,
-        shiven: 0
-    },
-    {
-        ujjwal: 100,
-        rudresh: 0,
-        deepu: 679,
-        shiven: 0
-    }
+    // {
+    //     ujjwal: 1,
+    //     rudresh: 0,
+    //     deepu: 99,
+    //     shiven: 0
+    // },
+    // {
+    //     ujjwal: 100,
+    //     rudresh: 0,
+    //     deepu: 679,
+    //     shiven: 0
+    // }
     // Add more weeks by copying and modifying the above structure
 ];
 
