@@ -6,8 +6,13 @@ const weeklyScores = [
         rudresh: 0,
         deepu: 0,
         shiven: 0
+<<<<<<< HEAD
     },
     // Week 2
+=======
+    }
+    // // Week 2
+>>>>>>> 0adaadc (scores updated)
     // {
     //     ujjwal: 1,
     //     rudresh: 0,
