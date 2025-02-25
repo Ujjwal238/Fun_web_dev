@@ -1,107 +1,131 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Card Nights</title>
-    <meta name="description" content=" " />
-    <meta name="keywords" content="gsap, animation, intro, stack, images" />
-    <meta name="author" content="deadrabbbbit for Codrops" />
-    <link rel="shortcut icon" href="favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gloock&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" type="text/css" href="css/base.css" />
-
-    <script>
-      document.documentElement.className = "js";
-    </script>
-  </head>
-  <body class="demo-1 loading">
-    <div data-debug>
-      <div></div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game Scores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="card-container">
+        <div class="floating-card red" style="--delay: 0s">♥️</div>
+        <div class="floating-card" style="--delay: 2s">♠️</div>
+        <div class="floating-card red" style="--delay: 4s">♦️</div>
+        <div class="floating-card" style="--delay: 6s">♣️</div>
+        <div class="floating-card red" style="--delay: 1s">♥️</div>
+        <div class="floating-card" style="--delay: 3s">♠️</div>
+        <div class="floating-card red" style="--delay: 5s">♦️</div>
+        <div class="floating-card" style="--delay: 7s">♣️</div>
     </div>
-    <main>
-      <header class="frame">
-       
-        <a class="frame__github" href="https://github.com/Ujjwal238/Fun_web_dev">GitHub</a>
-        <!-- <a class="frame__extra" href="">2026</a> -->
-        <a class="frame__archive" href="">2027</a>
-        <a class="frame__back" href="">2028</a>
-        <!-- have leader board link here between "" -->
-        <nav class="frame__demos">
-          <h2 class="frame__title">Made with ♡ by Ujjwal Mishra [23162]</h2>
-        </nav>
-      </header>
-      <div class="content">
-        <div class="scene">
-          <div class="group">
-            <div class="card">
-              <div
-                class="card__img"
-                style="background-image: url(img/1.jpg)"
-              ></div>
-            </div>
-            <div class="card">
-              <div
-                class="card__img"
-                style="background-image: url(img/2.jpg)"
-              ></div>
-            </div>
-            <div class="card">
-              <div
-                class="card__img"
-                style="background-image: url(img/3.jpg)"
-              ></div>
-            </div>
-            <div class="card">
-              <div
-                class="card__img"
-                style="background-image: url(img/4.jpg)"
-              ></div>
-            </div>
-            <div class="card">
-              <div
-                class="card__img"
-                style="background-image: url(img/5.jpg)"
-              ></div>
-            </div>
-            <div class="card">
-              <div
-                class="card__img"
-                style="background-image: url(img/6.jpg)"
-              ></div>
-            </div>
-            <div class="card">
-              <div
-                class="card__img"
-                style="background-image: url(img/7.jpg)"
-              ></div>
-            </div>
-            <div class="card">
-              <div
-                class="card__img"
-                style="background-image: url(img/8.jpg)"
-              ></div>
-            </div>
-          </div>
+
+    <div class="container">
+        <h1>Card Game Scores</h1>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('weekly')">
+                <span class="suit"></span>
+                Weekly Wins
+                <span class="suit"></span>
+            </button>
+            <button class="tab-btn" onclick="showTab('leaderboard')">
+                <span class="suit"></span>
+                Champions Board
+                <span class="suit"></span>
+            </button>
         </div>
 
-        <div class="headings">
-          <h1 class="headings__main gloock-regular">Card</h1>
-          <h1 class="headings__main gloock-regular">Nights</h1>
-          <h6 class="headings_subtitle gloock-regular">Every&nbsp;&nbsp;Friday</h6>
+        <div id="weekly" class="tab-content active">
+            <div class="week-selector">
+                <button onclick="changeWeek(-1)">←</button>
+                <h2 id="weekTitle">Week 1</h2>
+                <button onclick="changeWeek(1)">→</button>
+            </div>
+            <div class="scores-grid">
+                <div class="score-card playing-card">
+                    <div class="card-corner top-left">
+                        <div class="suit red">♥️</div>
+                        <div class="player-initial">U</div>
+                    </div>
+                    <!-- <h3>Ujjwal</h3> -->
+                    <div id="ujjwal-score" class="score">0</div>
+                    <div class="score-label">wins</div>
+                    <div class="card-corner bottom-right">
+                        <div class="player-initial">U</div>
+                        <div class="suit red">♥️</div>
+                    </div>
+                </div>
+                <div class="score-card playing-card">
+                    <div class="card-corner top-left">
+                        <div class="suit">♠️</div>
+                        <div class="player-initial">R</div>
+                    </div>
+                    <!-- <h3>Rudresh</h3> -->
+                    <div id="rudresh-score" class="score">0</div>
+                    <div class="score-label">wins</div>
+                    <div class="card-corner bottom-right">
+                        <div class="player-initial">R</div>
+                        <div class="suit">♠️</div>
+                    </div>
+                </div>
+                <div class="score-card playing-card">
+                    <div class="card-corner top-left">
+                        <div class="suit">♣️</div>
+                        <div class="player-initial">D</div>
+                    </div>
+                    <!-- <h3>Deepu</h3> -->
+                    <div id="deepu-score" class="score">0</div>
+                    <div class="score-label">wins</div>
+                    <div class="card-corner bottom-right">
+                        <div class="player-initial">D</div>
+                        <div class="suit">♣️</div>
+                    </div>
+                </div>
+                <div class="score-card playing-card">
+                    <div class="card-corner top-left">
+                        <div class="suit red">♦️</div>
+                        <div class="player-initial">S</div>
+                    </div>
+                    <!-- <h3>Shiven</h3> -->
+                    <div id="shiven-score" class="score">0</div>
+                    <div class="score-label">wins</div>
+                    <div class="card-corner bottom-right">
+                        <div class="player-initial">S</div>
+                        <div class="suit red">♦️</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </main>
 
-    <script src="js/gsap.min.js"></script>
-    <!-- Image preloader -->
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script type="module" src="js/index.js"></script>
-  </body>
+        <div id="leaderboard" class="tab-content">
+            <div class="leaderboard-container">
+                <div class="podium">
+                    <div class="podium-spot" id="second-place">
+                        <div class="crown">🥈</div>
+                        <div class="player-name">2nd</div>
+                        <div class="podium-base" style="height: 120px">2</div>
+                    </div>
+                    <div class="podium-spot" id="first-place">
+                        <div class="crown">👑</div>
+                        <div class="player-name">1st</div>
+                        <div class="podium-base" style="height: 160px">1</div>
+                    </div>
+                    <div class="podium-spot" id="third-place">
+                        <div class="crown">🥉</div>
+                        <div class="player-name">3rd</div>
+                        <div class="podium-base" style="height: 80px">3</div>
+                    </div>
+                </div>
+                <div class="leaderboard-table">
+                    <div class="leaderboard-header">
+                        <span>Rank</span>
+                        <span>Player</span>
+                        <span>Games Won</span>
+                    </div>
+                    <div id="leaderboard-rows"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>

@@ -1,0 +1,401 @@
+:root {
+    --primary-color: #1a237e;
+    --secondary-color: #d32f2f;
+    --accent-color: #00796b;
+    --background-color: #f5f5f5;
+    --card-color: #ffffff;
+    --gold: #ffd700;
+    --silver: #c0c0c0;
+    --bronze: #cd7f32;
+    --red-suit: #d32f2f;
+    --card-width: 200px;
+    --card-height: calc(var(--card-width) * 1.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #20466b 0%, #17435e 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.card-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-card {
+    position: absolute;
+    font-size: 3rem;
+    animation: float 12s infinite linear;
+    opacity: 0.08;
+    animation-delay: var(--delay);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.floating-card.red {
+    color: var(--red-suit);
+}
+
+@keyframes float {
+    0% {
+        transform: translate(-100px, -100px) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.08;
+        transform: translate(calc(50vw), calc(50vh)) rotate(360deg) scale(1.2);
+    }
+    100% {
+        transform: translate(calc(100vw + 100px), calc(100vh + 100px)) rotate(720deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    white-space: nowrap;
+    letter-spacing: 8px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, var(--primary-color), #303f9f);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tab-btn .suit {
+    font-size: 1.2em;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, var(--secondary-color), #b71c1c);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.week-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.week-selector button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.week-selector button:hover {
+    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.week-selector h2 {
+    font-size: 2rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.scores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.score-card {
+    background: var(--card-color);
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playing-card {
+    border: 8px solid white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+}
+
+.card-corner {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.8rem;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+.player-initial {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.suit {
+    font-size: 1.4rem;
+}
+
+.suit.red {
+    color: var(--red-suit);
+}
+
+.score-card:hover {
+    transform: translateY(-10px) rotate(2deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.score-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.score {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+}
+
+.score-label {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.podium {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 4rem 0;
+    height: 300px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.podium-spot {
+    width: 160px;
+    text-align: center;
+    margin: 0 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.crown {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.podium-spot:hover {
+    transform: translateY(-10px);
+}
+
+.podium-spot:hover .crown {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2) rotate(10deg);
+}
+
+.player-name {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.podium-base {
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+#first-place .podium-base {
+    background: linear-gradient(135deg, var(--gold), #ffa000);
+    box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+}
+
+#second-place .podium-base {
+    background: linear-gradient(135deg, var(--silver), #9e9e9e);
+    box-shadow: 0 8px 16px rgba(192, 192, 192, 0.3);
+}
+
+#third-place .podium-base {
+    background: linear-gradient(135deg, var(--bronze), #8d6e63);
+    box-shadow: 0 8px 16px rgba(205, 127, 50, 0.3);
+}
+
+.podium-base::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+    animation: shine 2s infinite linear;
+}
+
+@keyframes shine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+.leaderboard-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.leaderboard-table {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.leaderboard-header {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), #303f9f);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-row {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr;
+    padding: 1.2rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.leaderboard-row:hover {
+    background: rgba(0, 0, 0, 0.02);
+    transform: translateX(10px);
+}
