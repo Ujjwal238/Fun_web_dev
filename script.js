@@ -4,7 +4,7 @@ const weeklyScores = [
     {
         ujjwal: 0,
         rudresh: 0,
-        deepu: 0,
+        deepu: 1,
         shiven: 0
     }
     // Week 2
